@@ -8,10 +8,7 @@ Um sistema de gerenciamento de produtos desenvolvido com ASP.NET Core, que permi
 - [Estrutura do Projeto](#estrutura-do-projeto)
 - [Configuração do Ambiente](#configuração-do-ambiente)
 - [Como Executar o Projeto](#como-executar-o-projeto)
-- [Endpoints](#endpoints)
-- [Contribuição](#contribuição)
-- [Licença](#licença)
-
+- 
 ## Funcionalidades
 
 - **Criar Produto**: Adicione um novo produto ao sistema.
@@ -30,7 +27,6 @@ Um sistema de gerenciamento de produtos desenvolvido com ASP.NET Core, que permi
 
 ## Estrutura do Projeto
 
-```plaintext
 GerenciadorDeProdutos/
 ├── Controllers/
 │   └── ProdutoController.cs         # Controlador para gerenciar os endpoints de Produto
@@ -48,4 +44,31 @@ GerenciadorDeProdutos/
 │   └── ProdutoService.cs            # Implementação do serviço de Produto
 └── ConexãoDB/
     └── InicializadorDB.cs           # Classe para inicializar a conexão com o banco de dados
+
+Clone o repositório:
+
+bash
+Copiar código
+git clone <URL_DO_REPOSITORIO>
+
+Navegue até o diretório do projeto:
+bash
+Copiar código
+cd GerenciadorDeProdutos
+
+Restaure as dependências:
+bash
+Copiar código
+dotnet restore
+
+Configuração do Banco de Dados:
+Configure a conexão no arquivo InicializadorDB.cs, garantindo que o banco de dados e a tabela de produtos estão configurados.
+
+Execute o projeto:
+bash
+Copiar código
+dotnet run
+Acesse a API:
+
+A API estará disponível em https://localhost:5001/api/produto
 
