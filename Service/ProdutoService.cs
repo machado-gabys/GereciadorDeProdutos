@@ -16,6 +16,7 @@ namespace GerenciadorDeProdutos.Service
 
         public async Task<ProdutoDTO> CriarProduto(ProdutoDTO dto)
         {
+            ValidaDTO(dto);
             var produto = new Produto
             {
                 Nome = dto.Nome,
@@ -40,18 +41,25 @@ namespace GerenciadorDeProdutos.Service
             return produto == null ? null : ConverterParaDTO(produto);
         }
 
-        public async Task<bool> AtualizarProduto(int id, ProdutoDTO dto)
+        public async Task<ProdutoDTO> AtualizarProduto(ProdutoDTO dto)
         {
+            var produtoAux = await ObterPorId(dto.Id);
+            if (produtoAux == null)
+            {
+                throw new KeyNotFoundException("Produto não encontrado para o ID especificado.");
+            }
+            ValidaDTO(dto);
             var produto = new Produto
             {
-                Id = id,
+                Id = dto.Id,
                 Nome = dto.Nome,
                 Descricao = dto.Descricao,
                 Preco = dto.Preco,
                 Qtd = dto.Qtd
             };
 
-            return await _produtoRepository.AtualizarProduto(produto);
+            await _produtoRepository.AtualizarProduto(produto);
+            return await ObterPorId(dto.Id);
         }
 
         public async Task<bool> ExcluirProduto(int id)
@@ -63,11 +71,31 @@ namespace GerenciadorDeProdutos.Service
         {
             return new ProdutoDTO
             {
+                Id = produto.Id,
                 Nome = produto.Nome,
                 Preco = produto.Preco,
                 Descricao = produto.Descricao,
-                Qtd = produto.Qtd,
+                Qtd = produto.Qtd
             };
+        }
+        private void ValidaDTO(ProdutoDTO dto)
+        {
+            if (string.IsNullOrEmpty(dto.Nome))
+            {
+                throw new Exception("Nome inválido.");
+            }
+            if (dto.Preco < 0)
+            {
+                throw new Exception("Preço inválido.");
+            }
+            if (string.IsNullOrEmpty(dto.Descricao))
+            {
+                throw new Exception("Descrição inválida.");
+            }
+            if (dto.Qtd < 0)
+            {
+                throw new Exception("Quantidade inválida.");
+            }
         }
     }
 }

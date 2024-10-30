@@ -7,7 +7,7 @@ namespace GerenciadorDeProdutos.Service.Interface
         Task<ProdutoDTO> CriarProduto(ProdutoDTO produto);
         Task<IEnumerable<ProdutoDTO>> ObterTodos();
         Task<ProdutoDTO> ObterPorId(int id);
-        Task<bool> AtualizarProduto(int id, ProdutoDTO produto);
+        Task<ProdutoDTO> AtualizarProduto(ProdutoDTO produto);
         Task<bool> ExcluirProduto(int id);
     }
 }

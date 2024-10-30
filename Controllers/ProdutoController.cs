@@ -36,7 +36,7 @@ namespace GerenciadorDeProdutos.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> ObterPorId(int id)
+        public async Task<IActionResult> ObterPorId([FromRoute] int id)
         {
             var produto = await _produtoService.ObterPorId(id);
             if (produto == null)
@@ -44,16 +44,22 @@ namespace GerenciadorDeProdutos.Controllers
             return Ok(produto);
         }
 
-        [HttpPut("{id}")]
-        public async Task<IActionResult> AtualizarProduto(int id, [FromBody] ProdutoDTO produto)
+        [HttpPut]
+        public async Task<IActionResult> AtualizarProduto([FromBody] ProdutoDTO produto)
         {
-            if (await _produtoService.AtualizarProduto(id, produto))
-                return NoContent();
-            return NotFound("Produto não encontrado");
+            try
+            {
+                var produtoAtualizado = await _produtoService.AtualizarProduto(produto);
+                return Ok(produtoAtualizado);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { mensagem = "Erro ao atualizar produto.", detalhes = ex.Message });
+            }
         }
 
         [HttpDelete("{id}")]
-        public async Task<IActionResult> ExcluirProduto(int id)
+        public async Task<IActionResult> ExcluirProduto([FromRoute] int id)
         {
             if (await _produtoService.ExcluirProduto(id))
                 return NoContent();

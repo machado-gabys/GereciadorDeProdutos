@@ -18,7 +18,7 @@ namespace GerenciadorDeProdutos.Repository
         {
             string query = @"INSERT INTO produto (nome, preco, descricao, qtd) 
                              VALUES (@Nome, @Preco, @Descricao, @Qtd);
-                             SELECT LAST_INSERT_ID();";
+                             SELECT LAST_INSERT_ROWID();";
             produto.Id = await _connection.QuerySingleAsync<int>(query, produto);
             return produto;
         }

@@ -1,0 +1,230 @@
+{
+	"info": {
+		"_postman_id": "4dace41a-388b-495d-81d7-a4ac8eb6fe29",
+		"name": "GerenciadorDeProdutos",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "33856412"
+	},
+	"item": [
+		{
+			"name": "Criar novo",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"Nome\" : \"Mouse\",\r\n    \"Preco\" : 80.0,\r\n    \"Descricao\" : \"Mouse Razer\",\r\n    \"Qtd\" : 40\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5018/api/Produto",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5018",
+					"path": [
+						"api",
+						"Produto"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Retornar Todos",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5018/api/Produto",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5018",
+					"path": [
+						"api",
+						"Produto"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Retornar Por ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5018/api/Produto/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5018",
+					"path": [
+						"api",
+						"Produto",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Erro: Atualizar produto não existente",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"Id\" : 5,\r\n    \"Nome\" : \"Mouse\",\r\n    \"Preco\" : 90.0,\r\n    \"Descricao\" : \"Mouse Razer\",\r\n    \"Qtd\" : 40\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5018/api/Produto",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5018",
+					"path": [
+						"api",
+						"Produto"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Atualizar Produtos",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"Id\" : 1,\r\n    \"Nome\" : \"Mouse2\",\r\n    \"Preco\" : 110.0,\r\n    \"Descricao\" : \"Mouse RAZER2\",\r\n    \"Qtd\" : 60\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5018/api/Produto",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5018",
+					"path": [
+						"api",
+						"Produto"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Deletar Produto",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5018/api/Produto/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5018",
+					"path": [
+						"api",
+						"Produto",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Erro: Deletar Produto invalido",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5018/api/Produto/1000",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5018",
+					"path": [
+						"api",
+						"Produto",
+						"1000"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Erro: Procurar produto não existente",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5018/api/Produto/1000",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5018",
+					"path": [
+						"api",
+						"Produto",
+						"1000"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Erro: valor negativo em campos",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"Nome\" : \"Mouse\",\r\n    \"Preco\" : -40,\r\n    \"Descricao\" : \"Mouse Razer\",\r\n    \"Qtd\" : 40\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5018/api/Produto",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5018",
+					"path": [
+						"api",
+						"Produto"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
